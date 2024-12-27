@@ -17,7 +17,7 @@ import axios from "axios"
 import { API_URL } from '@/App'
 import { AppContext } from '@/Context/AppContext'
 import { AppContextType } from '@/types'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -36,7 +36,6 @@ const formSchema = z.object({
   })
 
 export const RegisterForm = () =>  {
-    const navigate = useNavigate();
   const {loggedInUser,setLoggedInUser} = useContext(AppContext) as AppContextType;
   if(loggedInUser) return <Navigate to="/"/>
   const {toast} = useToast()
@@ -66,7 +65,7 @@ export const RegisterForm = () =>  {
         form.reset();
         const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
         console.log(redirectUrl);
-        navigate(redirectUrl);
+        window.location.replace(redirectUrl)
         localStorage.removeItem('redirectAfterLogin');
     } catch (error:any) {
         console.log(error);

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { useToast } from '@/hooks/use-toast'
 import { AppContext } from '@/Context/AppContext'
 import { AppContextType } from '@/types'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '@/App'
 
@@ -29,7 +29,6 @@ const formSchema = z.object({
 })
 
 export const  LoginForm = () => {
-    const navigate = useNavigate();
     const {loggedInUser,setLoggedInUser} = useContext(AppContext) as AppContextType;
     if(loggedInUser) return <Navigate to="/"/>
     const {toast} = useToast();
@@ -64,7 +63,7 @@ export const  LoginForm = () => {
         form.reset();
         const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
         console.log(redirectUrl);
-        navigate(redirectUrl);
+        window.location.replace(redirectUrl);
         localStorage.removeItem('redirectAfterLogin');
     } catch (error:any) {
         console.log(error);
