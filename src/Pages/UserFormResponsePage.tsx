@@ -9,7 +9,7 @@ import { FormResponse } from '@/types'
 import { API_URL } from '@/App'
 
 const UserFormResponsesPage: React.FC = () => {
-  const [responses, setResponses] = useState<FormResponse[]>([])
+  const [responses, setResponses] = useState<FormResponse[] | null>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -53,7 +53,7 @@ const UserFormResponsesPage: React.FC = () => {
     )
   }
 
-  if (responses.length === 0) {
+  if (responses==null) {
     return (
       <div className="container mx-auto py-8">
         <Card>
@@ -86,18 +86,18 @@ const UserFormResponsesPage: React.FC = () => {
             </TableHeader>
             <TableBody>
               {responses.map((response) => (
-                <TableRow key={response.id}>
-                  <TableCell>{response.id}</TableCell>
-                  <TableCell>{response.form?.form_title || 'N/A'}</TableCell>
+                <TableRow key={response?.id}>
+                  <TableCell>{response?.id}</TableCell>
+                  <TableCell>{response?.form?.form_title || 'N/A'}</TableCell>
                   <TableCell>
-                    {response.form?.form_description.length! > 50
-                      ? `${response.form?.form_description.substring(0, 50)}...`
-                      : response.form?.form_description || 'N/A'}
+                    {response?.form?.form_description.length! > 50
+                      ? `${response?.form?.form_description.substring(0, 50)}...`
+                      : response?.form?.form_description || 'N/A'}
                   </TableCell>
-                  <TableCell>{new Date(response.submitted_at).toLocaleString()}</TableCell>
+                  <TableCell>{new Date(response?.submitted_at!).toLocaleString()}</TableCell>
                   <TableCell>
                     <Button asChild>
-                      <Link to={`/form-responses/${response.form_id}/${response.id}`}>
+                      <Link to={`/form-responses/${response?.form_id}/${response?.id}`}>
                         View Details
                       </Link>
                     </Button>

@@ -70,14 +70,14 @@ const FormResponsesPage = () => {
             </TableHeader>
             <TableBody>
               {responses.map((response: FormResponse) => (
-                <TableRow key={response.id}>
-                  <TableCell>{response.id}</TableCell>
-                  <TableCell>{response.respondent?.username}</TableCell>
-                  <TableCell>{response.respondent?.email}</TableCell>
-                  <TableCell>{new Date(response.submitted_at).toLocaleString()}</TableCell>
+                <TableRow key={response?.id}>
+                  <TableCell>{response?.id}</TableCell>
+                  <TableCell>{response?.respondent?.username}</TableCell>
+                  <TableCell>{response?.respondent?.email}</TableCell>
+                  <TableCell>{new Date(response?.submitted_at!).toLocaleString()}</TableCell>
                   <TableCell>
                     <Button asChild>
-                      <Link to={`/form-responses/${id}/${response.id}`}>
+                      <Link to={`/form-responses/${id}/${response?.id}`}>
                         View Details
                       </Link>
                     </Button>

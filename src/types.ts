@@ -49,7 +49,8 @@ export type FormResponse = {
     submitted_at:string;
     respondent:User | null;
     form:Form | null
-}
+} | null
+
 
 export type ResponseField = {
     id: number;
