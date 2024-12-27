@@ -72,11 +72,6 @@ const MyForms = () => {
         <Card>
           <CardContent className="flex flex-col items-center justify-center h-40">
             <p className="text-lg mb-4">You haven't created any forms yet.</p>
-            <Button asChild>
-              <Link to="/create-form">
-                <PlusCircle className="mr-2 h-4 w-4" /> Create Your First Form
-              </Link>
-            </Button>
           </CardContent>
         </Card>
       )}
