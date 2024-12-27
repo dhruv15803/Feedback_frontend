@@ -35,7 +35,7 @@ const formSchema = z.object({
     }),
   })
 
-export const RegisterForm = ({redirectUrl}:{redirectUrl:string}) =>  {
+export const RegisterForm = () =>  {
     const navigate = useNavigate();
   const {loggedInUser,setLoggedInUser} = useContext(AppContext) as AppContextType;
   if(loggedInUser) return <Navigate to="/"/>
@@ -64,6 +64,7 @@ export const RegisterForm = ({redirectUrl}:{redirectUrl:string}) =>  {
         setLoggedInUser(response.data.user);
         toast({title:"Registration successfull",description:"You have successfully registered"})
         form.reset();
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || '/';
         navigate(redirectUrl);
     } catch (error:any) {
         console.log(error);

@@ -5,14 +5,12 @@ import { LoginForm } from '@/components/LoginForm'
 import { RegisterForm } from '@/components/RegisterForm'
 import { AppContext } from '@/Context/AppContext'
 import { AppContextType } from '@/types'
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 export default function AuthPage() {
   const { loggedInUser } = useContext(AppContext) as AppContextType;
-  const location = useLocation();  // Get current location
-  const redirectUrl = location.state?.from || '/';  // Save original URL
 
-  if (loggedInUser) return <Navigate to={redirectUrl} />  // Redirect to original URL after login
+  if (loggedInUser) return <Navigate to={"/"} />  // Redirect to original URL after login
 
   const [activeTab, setActiveTab] = useState("login");
 
@@ -30,10 +28,10 @@ export default function AuthPage() {
               <TabsTrigger value="register">Register</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-              <LoginForm redirectUrl={redirectUrl} />
+              <LoginForm />
             </TabsContent>
             <TabsContent value="register">
-              <RegisterForm redirectUrl={redirectUrl} />
+              <RegisterForm />
             </TabsContent>
           </Tabs>
         </CardContent>
