@@ -35,7 +35,7 @@ const formSchema = z.object({
     }),
   })
 
-export const RegisterForm = () =>  {
+export const RegisterForm = ({redirectUrl}:{redirectUrl:string}) =>  {
     const navigate = useNavigate();
   const {loggedInUser,setLoggedInUser} = useContext(AppContext) as AppContextType;
   if(loggedInUser) return <Navigate to="/"/>
@@ -64,7 +64,7 @@ export const RegisterForm = () =>  {
         setLoggedInUser(response.data.user);
         toast({title:"Registration successfull",description:"You have successfully registered"})
         form.reset();
-        navigate("/");
+        navigate(redirectUrl);
     } catch (error:any) {
         console.log(error);
         setRegisterErrMsg(error.response.data.message);

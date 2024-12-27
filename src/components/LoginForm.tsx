@@ -28,7 +28,7 @@ const formSchema = z.object({
   }),
 })
 
-export const  LoginForm = () => {
+export const  LoginForm = ({redirectUrl}:{redirectUrl:string}) => {
     const navigate = useNavigate();
     const {loggedInUser,setLoggedInUser} = useContext(AppContext) as AppContextType;
     if(loggedInUser) return <Navigate to="/"/>
@@ -62,7 +62,7 @@ export const  LoginForm = () => {
             "description":"You have succesfully logged in"
         })
         form.reset();
-        navigate("/");
+        navigate(redirectUrl);
     } catch (error:any) {
         console.log(error);
         setLoginErrMsg(error.response.data.message);
