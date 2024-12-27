@@ -9,7 +9,7 @@ import FormPage from "./Pages/FormPage";
 import FormResponsesPage from "./Pages/FormResponsesPage";
 import FormResponseDetailPage from "./Pages/FormResponseDetailPage";
 import UserFormResponsesPage from "./Pages/UserFormResponsePage";
-export const API_URL=import.meta.env.VITE_API_URL
+export const API_URL=import.meta.env.VITE_API_URL || "https://go-feedback-app.onrender.com"
 
 
 function App() {
