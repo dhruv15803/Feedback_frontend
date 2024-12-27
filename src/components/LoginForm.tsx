@@ -63,7 +63,9 @@ export const  LoginForm = () => {
         })
         form.reset();
         const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
+        console.log(redirectUrl);
         navigate(redirectUrl);
+        localStorage.removeItem('redirectAfterLogin');
     } catch (error:any) {
         console.log(error);
         setLoginErrMsg(error.response.data.message);
