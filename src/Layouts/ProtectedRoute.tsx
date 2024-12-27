@@ -19,7 +19,7 @@ export const ProtectedRoute = () => {
 
     if (loggedInUser == null) {
         // Store the current location to redirect after successful login
-        sessionStorage.setItem('redirectAfterLogin', location.pathname);
+        localStorage.setItem('redirectAfterLogin', location.pathname);
         return <Navigate to="/auth" />;
     }
 

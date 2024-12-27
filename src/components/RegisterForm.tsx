@@ -64,7 +64,7 @@ export const RegisterForm = () =>  {
         setLoggedInUser(response.data.user);
         toast({title:"Registration successfull",description:"You have successfully registered"})
         form.reset();
-        const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || '/';
+        const redirectUrl = localStorage.getItem('redirectAfterLogin') || '/';
         navigate(redirectUrl);
     } catch (error:any) {
         console.log(error);
